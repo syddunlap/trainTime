@@ -1,0 +1,75 @@
+.jumbotron {
+    background: rgba(20, 20, 97, 0.781);
+}
+
+.display-4 {
+    font-family: 'Major Mono Display', monospace;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.lead {
+    font-family: 'Roboto Mono', monospace;
+    color: whitesmoke;
+    text-align: center;
+}
+
+.card {
+    font-family: 'Roboto Mono', monospace;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+
+.card-header {
+    background: rgba(20, 20, 97, 0.781);
+    color: whitesmoke;
+}
+
+body {
+    background-image: linear-gradient(rgba(70, 70, 70), rgba(20, 20, 97, 0.781));
+}
+
+th {
+    font-weight: bold;
+}
+
+
+@media only screen and (max-width: 760px) {
+    tr {
+        font-size: 11px;
+        border: 1px solid #ccc; 
+    }
+
+    /* Force table to not be like tables anymore */
+	table, thead, tbody, th, td, tr { 
+        display: block; 
+        
+    }
+    
+    /* Hide table headers (but not display: none;, for accessibility) */
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+    }
+    
+    td:after { 
+        font-style: italic; 
+		/* Now like a table header */
+		position: relative;
+		/* Top/left values mimic padding */
+		padding-top: 6px;
+		padding-left: 25px;
+		width: 45%; 
+		padding-right: 10px; 
+		white-space: nowrap;
+    }
+    
+    /* Label the data */
+	td:nth-of-type(1):after { content: "Train Name"; }
+	td:nth-of-type(2):after { content: "Destination"; }
+    td:nth-of-type(3):after { content: "Frequency (min)"; }
+    td:nth-of-type(4):after { content: "Next Arrival"; }
+	td:nth-of-type(5):after { content: "Minutes Away"; }
+}
+
