@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     // Initialize Firebase
-    var config = {
+    const config = {
         apiKey: "AIzaSyBha_FginXLjnFYlKfsnVcwMRBVhZ1oqOk",
         authDomain: "trainscheduler-378ed.firebaseapp.com",
         databaseURL: "https://trainscheduler-378ed.firebaseio.com",
@@ -11,20 +11,20 @@ $(document).ready(function () {
     };
     firebase.initializeApp(config);
 
-    var database = firebase.database();
+    const database = firebase.database();
 
     // Button for adding trains
     $("#submit").on("click", function (event) {
         event.preventDefault();
 
         // Grab user input
-        var trainName = $("#trainName").val().trim();
-        var destination = $("#destination").val().trim();
-        var firstTrain = parseInt($("#firstTrain").val().trim());
-        var frequency = $("#frequency").val().trim();
+        let trainName = $("#trainName").val().trim();
+        let destination = $("#destination").val().trim();
+        let firstTrain = parseInt($("#firstTrain").val().trim());
+        let frequency = $("#frequency").val().trim();
 
         // Create object for holding new train
-        var newTrain = {
+        let newTrain = {
             trainName: trainName,
             destination: destination,
             firstTrain: firstTrain,
@@ -33,12 +33,6 @@ $(document).ready(function () {
 
         // Upload to database
         database.ref().push(newTrain);
-
-        // Log to console
-        console.log(newTrain.trainName);
-        console.log(newTrain.destination);
-        console.log(newTrain.firstTrain);
-        console.log(newTrain.frequency);
 
         // Clear the text boxes
         $("#trainName").val("");
@@ -49,25 +43,23 @@ $(document).ready(function () {
 
     // Firebase event for adding train to database and a new row in HTML when user hits submit
     database.ref().on("child_added", function (childSnapshot) {
-        console.log(childSnapshot.val());
 
         // Store everything in variables
-        var trainName = childSnapshot.val().trainName;
-        var destination = childSnapshot.val().destination;
-        var firstTrain = childSnapshot.val().firstTrain;
-        var frequency = childSnapshot.val().frequency;
+        let trainName = childSnapshot.val().trainName;
+        let destination = childSnapshot.val().destination;
+        let firstTrain = childSnapshot.val().firstTrain;
+        let frequency = childSnapshot.val().frequency;
 
         // Math to get Next Train & Minutes until next train
-        var firstTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
-        console.log(firstTimeConverted);
-        var currentTime = moment();
-        var diffTime = moment().diff(moment(firstTimeConverted), "minutes");
-        var tRemainder = diffTime % frequency
-        var minutesTilTrain = frequency - tRemainder;
-        var nextTrain = moment().add(minutesTilTrain, "minutes").format("HH:mm");
+        let firstTimeConverted = moment(firstTrain, "HH:mm").subtract(1, "years");
+        let currentTime = moment();
+        let diffTime = moment().diff(moment(firstTimeConverted), "minutes");
+        let tRemainder = diffTime % frequency
+        let minutesTilTrain = frequency - tRemainder;
+        let nextTrain = moment().add(minutesTilTrain, "minutes").format("HH:mm");
 
         // Add row to table
-        var addedTrain = $("<tr>").append(
+        let addedTrain = $("<tr>").append(
             $("<td>").text(trainName),
             $("<td>").text(destination),
             $("<td>").text(frequency),
