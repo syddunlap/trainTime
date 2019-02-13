@@ -10,3 +10,9 @@ The schedule adds trains to the page live as they are inputed by any user on the
 - JavaScript
 - jQuery
 - Firebase
+
+## Project Screenshots
+![Main Page](/assets/images/mainpage.png)
+![Add Train](/assets/images/addtrain.png)
+
+[Link to Project](https://syddunlap.github.io/trainTime/)
